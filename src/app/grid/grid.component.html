@@ -1,0 +1,20 @@
+<app-controls (changeGridSizeEvent)="onGridSizeChangeClicked($event)" (doMovements)="onTransmitClicked($event)" (setHeading)="onSetHeadingClicked($event)" (setRoverPosition)="setInitialPosition($event)"></app-controls>
+
+<div *ngIf="gridSize > 0" class="divPosition">
+  <div>Current Heading: {{roverPosition.heading}}</div>
+  <div>Current X Position: {{roverPosition.x+1}}</div>
+  <div>Current Y Position: {{roverPosition.y+1}}</div>
+</div>
+
+<div class="grid-container center-screen">
+    <div *ngFor="let row of grid; let rowIndex = index">
+      <div *ngFor="let cell of row; let colIndex = index" class="grid-cell">
+        <div
+          class="moving-box"
+          @moveAnimation
+          *ngIf="rowIndex === roverPosition.x && colIndex === roverPosition.y">
+          🛰️
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+<div>
+    <div class="center-screen">
+        <label for="inpGridSize" class="controls-label">Enter Grid Size: </label>
+        <input 
+            id="inpGridSize"
+            class="controls-input"
+            type="number"
+            min="2"
+            max="40"
+            #newGridSize
+        >
+        <button 
+            id="btnGenerateGrid"
+            class="controls-button"
+            (click)="onGenerateGridClicked(newGridSize.valueAsNumber)"
+        >Generate Grid</button>
+    </div>
+
+    <div *ngIf="showSettings" class="center-screen">
+        <label for="inpInitialPositionX" class="controls-label">Initial X Position: </label>
+        <input 
+            id="inpInitialPositionX" 
+            class="controls-input"
+            type="number"
+            #initialPositionX
+        >
+        <label for="inpInitialPositionY" class="controls-label">Initial Y Position: </label>
+        <input 
+            id="inpInitialPositionY" 
+            class="controls-input"
+            type="number"
+            #initialPositionY
+        >
+        <button
+            id="btnSetInitialPosition"
+            class="controls-button"
+            (click)="onSetPositionClicked(initialPositionX.valueAsNumber, initialPositionY.valueAsNumber)"
+        > Set Initial Position
+        </button>
+    </div>
+
+    <div *ngIf="showSettings" class="center-screen">
+        <label for="inpIntialHeading" class="controls-label">Initial Heading: </label>
+        <input 
+            id="inpIntialHeading" 
+            class="controls-input"
+            type="text"
+            (keyup)="validateInput($event, true)"
+            #initialHeading
+        >
+        <button
+            id="btnSetInitialHeading"
+            class="controls-button"
+            (click)="onSetHeadingClicked(initialHeading.value)"
+        > Set initial Heading
+        </button>
+    </div>
+
+    <div *ngIf="showSettings" class="center-screen">
+        <label for="inpMovements" class="controls-label">Enter movements (L)eft, (R)ight, (M)ove </label>
+        <input
+            id="inpMovements"
+            class="controls-input"
+            type="string"
+            placeholder="L,R,M characters only"
+            (keyup)="validateInput($event, false)"
+            #movements
+        />
+        <button
+            id="btnMove"
+            class="controls-button"
+            (click)="onTransmitClicked(movements.value)"
+        >Transmit Commands</button>
+    </div>
+</div>
